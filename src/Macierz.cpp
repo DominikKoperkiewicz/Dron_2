@@ -59,7 +59,7 @@ Macierz<TYP, ROZMIAR> Macierz<TYP,ROZMIAR>::operator* (const Macierz<TYP, ROZMIA
         for(int j = 0; j < ROZMIAR; j++)
         wynik[i][j] = (*this)[i]*M2[j];
     }
-    return wynik.transponowana();
+    return wynik;
 }
 
 template <class TYP, int ROZMIAR>

@@ -6,19 +6,22 @@ CPPFLAGS= -c -g -Iinc -Wall -pedantic
 __start__: dron
 	./dron
 
-dron: obj/main.o obj/Obiekt3D.o obj/Prostopadloscian.o obj/Wirnik.o obj/Powierzchnia.o obj/Tafla.o obj/Dno.o obj/MacierzOb.o obj/Macierz.o obj/Wektor.o obj/Dron.o obj/Interfejs.o inc/Przeszkoda.hh obj/Dr3D_gnuplot_api.o
-	g++ -Wall -pedantic -o dron obj/main.o obj/Obiekt3D.o obj/Prostopadloscian.o obj/Wirnik.o obj/Powierzchnia.o obj/Tafla.o obj/Dno.o obj/MacierzOb.o obj/Macierz.o obj/Wektor.o obj/Dron.o obj/Interfejs.o obj/Przeszkoda.o obj/Dr3D_gnuplot_api.o -lpthread
+dron: obj/main.o obj/Obiekt3D.o obj/Prostopadloscian.o obj/Wirnik.o obj/Powierzchnia.o obj/Tafla.o obj/Dno.o obj/MacierzOb.o obj/Macierz.o obj/Wektor.o obj/Dron.o obj/Interfejs.o obj/Przeszkoda.o obj/Przesz_Prostopad.o obj/Dr3D_gnuplot_api.o
+	g++ -Wall -pedantic -o dron obj/main.o obj/Obiekt3D.o obj/Prostopadloscian.o obj/Wirnik.o obj/Powierzchnia.o obj/Tafla.o obj/Dno.o obj/MacierzOb.o obj/Macierz.o obj/Wektor.o obj/Dron.o obj/Interfejs.o obj/Przeszkoda.o obj/Przesz_Prostopad.o obj/Dr3D_gnuplot_api.o -lpthread
 
-obj/main.o: src/main.cpp inc/Prostopadloscian.hh inc/Wirnik.hh inc/Powierzchnia.hh inc/Tafla.hh inc/Dno.hh inc/Obiekt3D.hh inc/MacierzOb.hh inc/Macierz.hh inc/Wektor.hh inc/Dron.hh inc/Interfejs.hh  inc/Przeszkoda.hh
+obj/main.o: src/main.cpp inc/Prostopadloscian.hh inc/Wirnik.hh inc/Powierzchnia.hh inc/Tafla.hh inc/Dno.hh inc/Obiekt3D.hh inc/MacierzOb.hh inc/Macierz.hh inc/Wektor.hh inc/Dron.hh inc/Interfejs.hh inc/Przeszkoda.hh inc/Przesz_Prostopad.hh
 	g++ ${CPPFLAGS} -o obj/main.o src/main.cpp
 
 obj/Dron.o: src/Dron.cpp inc/Dron.hh inc/Prostopadloscian.hh inc/Wirnik.hh inc/Interfejs.hh inc/Obiekt3D.hh
 	g++ ${CPPFLAGS} -o obj/Dron.o src/Dron.cpp
 
+obj/Przesz_Prostopad.o: src/Przesz_Prostopad.cpp inc/Przesz_Prostopad.hh inc/Prostopadloscian.hh inc/Obiekt3D.hh inc/Macierz.hh inc/Wektor.hh
+	g++ ${CPPFLAGS} -o obj/Przesz_Prostopad.o src/Przesz_Prostopad.cpp
+
 obj/Przeszkoda.o: src/Przeszkoda.cpp inc/Przeszkoda.hh
 	g++ ${CPPFLAGS} -o obj/Przeszkoda.o src/Przeszkoda.cpp
 
-obj/Interfejs.o: src/Interfejs.cpp inc/Interfejs.hh
+obj/Interfejs.o: src/Interfejs.cpp inc/Interfejs.hh inc/Wektor.hh
 	g++ ${CPPFLAGS} -o obj/Interfejs.o src/Interfejs.cpp
 
 obj/Dno.o: src/Dno.cpp inc/Dno.hh inc/Powierzchnia.hh inc/Obiekt3D.hh inc/Macierz.hh inc/Wektor.hh

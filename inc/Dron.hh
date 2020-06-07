@@ -4,22 +4,25 @@
 #include "Prostopadloscian.hh"
 #include "Wirnik.hh"
 #include "Interfejs.hh"
+#include "Przeszkoda.hh"
 
-class Dron : public Prostopadloscian, public Interfejs {
+class Dron : public Prostopadloscian, public Interfejs, public Przeszkoda {
 private:
-    Wektor3D cel;
     Wirnik LewyWir;
     Wirnik PrawyWir;
 
 public:
-    Dron(std::shared_ptr<drawNS::Draw3DAPI>& sc) { wymiary = {1.7,1.5,1}; this->scena = sc; LewyWir.setScena(sc); PrawyWir.setScena(sc); }
+    Dron(std::shared_ptr<drawNS::Draw3DAPI>& sc, Wektor3D poz, double rozm, string kol);
     ~Dron() {}
-
-    void przesun(Wektor3D W);
-    void obrocZ(double st);
-    void plyn(double odl, double k); //odleglosc, kat
-    void rotacjaZ(double k); //kat
+    static std::shared_ptr<Dron> stworz(std::shared_ptr<drawNS::Draw3DAPI>& sc, Wektor3D poz, double rozm, string kol);
+    void przesun(Wektor3D W) override;
+    void obrocZ(double st) override;
+    void plyn(double odl, double k) override; //odleglosc, kat
+    void rotacjaZ(double k) override; //kat
     void rysuj() override;
+    Wektor3D getPozycja() const override { return pozycja; }
+    Wektor3D getWymiary() const override { return wymiary; }
+    bool czyKolizja(std::shared_ptr<Interfejs> D) const;
 };
 
 #endif

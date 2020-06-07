@@ -35,6 +35,6 @@ void Prostopadloscian::rysuj()
     }};
 
     int tmp = this->id;
-    this->id = this->scena->draw_polyhedron(points_map,"blue");
+    this->id = this->scena->draw_polyhedron(points_map,this->kolor);
     this->scena->erase_shape(tmp);
 }

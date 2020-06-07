@@ -7,9 +7,6 @@
 using std::string;
 
 class Powierzchnia : public Obiekt3D{
-    protected:
-    string kolor;
-
     public:
         void rysuj() override;
         Powierzchnia() {}

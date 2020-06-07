@@ -21,11 +21,10 @@ void Wirnik::rysuj()
     tab[10] = { W[0], 0.0 ,-W[2] };
     tab[11] = { W[0]/2, W[1],-W[2] };
 
-    MacierzOb M;
-    M.setObrot(90, 'x');
+
     for(int i = 0; i < 12; i++)
     {
-        tab[i] = M*orientacjaZ * tab[i];
+        tab[i] = orientacjaX * orientacjaY * orientacjaZ * tab[i];
         tab[i] = tab[i] + poz;
     }
 
@@ -46,6 +45,6 @@ void Wirnik::rysuj()
     }};
 
     int tmp = this->id;
-    this->id = this->scena->draw_polyhedron(points_map,"blue");
+    this->id = this->scena->draw_polyhedron(points_map, this->kolor);
     this->scena->erase_shape(tmp);
 }
